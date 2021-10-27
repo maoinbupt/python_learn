@@ -95,19 +95,18 @@ class Fib(object):
             a, b = b, a + b
         return a
 
-
+#实现一个__iter__()方法，该方法返回一个迭代对象
 for n in Fib():
     print(n)
-
+# list那样按照下标取出元素，需要实现__getitem__()方法：
 print(Fib()[3])
-
 
 # 动态返回属性实现链式调用
 class Chain(object):
     def __init__(self, path=''):
         self._path = path
 
-    # __getattr__()方法，动态返回一个属性
+    # __getattr__()方法，动态返回一个属性, 返回函数也是完全可以的
     def __getattr__(self, item):
         return Chain('%s/%s' % (self._path, item))
 
@@ -119,14 +118,15 @@ class Chain(object):
 
 print(Chain('api.domaintest.com').video.info.list)
 
-# 使用枚举类
+'使用枚举类'
 from enum import Enum, unique
-
 Month = Enum('Month', ('Jan', 'Feb', 'Mar', 'Apr', 'May'))
+Month.Jan
 for name, member in Month.__members__.items():
     print(name, '=>', member, ',', member.value)
+    #value属性则是自动赋给成员的int常量，默认从1开始计数。
 
-
+# 可以从Enum派生出自定义类
 # 保证没有重复值
 @unique
 class Weekday(Enum):
@@ -134,7 +134,7 @@ class Weekday(Enum):
     Mon = 1
     Tus = 2
     Wed = 3
-
+Weekday.Sun.value
 
 print(type(Student))
 print(type(s))
@@ -143,8 +143,11 @@ print(type(s))
 def funHello(self, name='world'):
     print('Hello %s' % name)
 
-
+#type()函数既可以返回一个对象的类型，又可以创建出新的类型
 # 创建Hello.class
+#1.class的名称；
+#2.继承的父类集合，注意Python支持多重继承，如果只有一个父类，别忘了tuple的单元素写法；
+#3.class的方法名称与函数绑定，这里我们把函数fn绑定到方法名hello上。
 Hello = type('Hello', (object,), dict(hello=funHello))
 
 h = Hello()

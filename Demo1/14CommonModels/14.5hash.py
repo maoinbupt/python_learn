@@ -18,3 +18,5 @@ message = b'Hello, world!'
 key = b'secrite'
 h = hmac.new(key,message, digestmod='MD5')
 print(h.hexdigest())
+# bytes
+print(type(message))

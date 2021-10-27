@@ -2,7 +2,7 @@ import asyncio
 import threading
 
 # @asyncio.coroutine把一个generator标记为coroutine类型，然后，我们就把这个coroutine扔到EventLoop中执行。
-
+# 已经废弃, 请使用下面的 async def
 @asyncio.coroutine
 def hello():
     print('Hello world! (%s)' % threading.currentThread())

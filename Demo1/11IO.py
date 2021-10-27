@@ -1,15 +1,15 @@
 
 # 文件读写
 import shutil
-
+txtpath = '/Users/fenggao/git/third/python_learn/Demo1/iotest.txt'
 try:
-    f = open('/Users/reamongao/git/python/Demo1/iotest.txt', 'r') #
+    f = open(txtpath, 'r') #
     print(f.read())
 finally:
     f.close()
 
 # 等同于上面的语句
-with open('/Users/reamongao/git/python/Demo1/iotest.txt', 'r') as f:
+with open(txtpath, 'r') as f:
     print(f.read())
 
 
@@ -46,7 +46,8 @@ print(os.path.abspath('.'))
 # 要通过os.path.join()函数，这样可以正确处理不同操作系统的路径分隔符,同理os.path.split()拆分路径
 # os.mkdir(os.path.join('/Users/reamongao/git/python/Demo1', 'testDir'))
 # os.rmdir('/Users/reamongao/git/python/Demo1/testDir')
-print(os.path.splitext('/Users/reamongao/git/python/Demo1/iotest.txt'))
+print("splitext---")
+print(os.path.splitext(txtpath))
 
 # os.rename('iotest.txt', 'iotest.py')
 # os.remove('iotest.py')
@@ -76,6 +77,7 @@ import json
 json_str = json.dumps(d)
 print(json_str)
 
+print('json.loads')
 print(json.loads(json_str))
 
 
@@ -95,6 +97,7 @@ def student2dict(std):
         'score': std.score
     }
 s = Student('Bob', 20, 88)
+print('json.dumps Student')
 print(json.dumps(s, default=student2dict))
 
 # json转为实例

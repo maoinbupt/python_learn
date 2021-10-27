@@ -1,5 +1,6 @@
 
 # 1.切片
+# 取list或tuple的部分元素
 L = ['Michael', 'Sarah', 'Tracy', 'Bob', 'Jack']
 print(L[:5])
 print(L[0:5:2])
@@ -18,10 +19,13 @@ import os
 print([d for d in os.listdir('.')])
 
 # 4.列表生成器,一边循环一边计算的机制，称为生成器：generator
+# 列表元素可以按照某种算法推算出来,
+# 定义generator的一种方法 : 列表生成式的[]改成()
 g = (x * x for x in range(1,5))
 for n in g:
     print(n)
 # 斐波拉切函数,定义generator的另一种方法
+# 这就是定义generator的另一种方法。如果一个函数定义中包含yield关键字，那么这个函数就不再是一个普通函数，而是一个generator函数
 def fib(max):
     n,a,b,= 0,0,1
     while(n<max):

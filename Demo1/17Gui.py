@@ -9,18 +9,20 @@ class Application(Frame):
         self.createWidgets()
 
     def createWidgets(self):
-        # self.helloLabel = Label(self, text='Hello, world!')
-        # # pack()方法把Widget加入到父容器中，并实现布局
-        # self.helloLabel.pack()
+        self.helloLabel = Label(self, text='Hello, world!')
+        # pack()方法把Widget加入到父容器中，并实现布局
+        self.helloLabel.pack()
+        self.quitButton = Button(self, text='Quit', command=self.quit)
+        self.quitButton.pack()
 
-        self.nameInput = Entry(self)
-        self.nameInput.pack()
+        #
+        # self.nameInput = Entry(self)
+        # self.nameInput.pack()
+        #
+        # self.alertButton = Button(self, text='Hello alert', command=self.hello())
+        # self.alertButton.pack()
 
-        self.alertButton = Button(self, text='Hello alert', command=self.hello())
-        self.alertButton.pack()
 
-        # self.quitButton = Button(self, text='Quit', command=self.quit)
-        # self.quitButton.pack()
 
     def hello(self):
         name = self.nameInput.get() or 'world'
@@ -28,7 +30,7 @@ class Application(Frame):
 
 app = Application()
 # 设置窗口标题:
-app.master.title('Hello World')
+app.master.title('Hello World title')
 # 主消息循环:
 app.mainloop()
 

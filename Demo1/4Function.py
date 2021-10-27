@@ -2,6 +2,13 @@
 
 import math
 
+
+#内置函数
+abs(-20)
+max(1, 2)
+int('123')
+
+
 # 计算圆面积
 def area_sum(i):
     area = math.pi * i * i
@@ -28,12 +35,14 @@ print(my_abs(-3))
 def nope():
     pass
 
+# 返回多个值
 # 定义一个坐标位移函数
 def move(x,y,step, angel=0):
     dx = x + step * math.cos(angel)
     dy = y - step * math.sin(angel)
     return dx,dy
 x, y = move(100,100,60, math.pi/6)
+#返回值是一个tuple
 t1 = move(100,100,60, math.pi/6)
 print(x, y)
 
@@ -50,7 +59,7 @@ def power(x, n=2):
 
 power(2)
 
-# 可变参数允许你传入0个或任意个参数，
+# 可变参数允许你传入0个或任意个参数，前面加*号
 # 这些可变参数在函数调用时自动组装为一个tuple
 def cal1(*numbers):
     sum = 0
@@ -60,6 +69,7 @@ def cal1(*numbers):
 
 nums = (2,3,4)
 print(cal1(1,2,3))
+#允许你在list或tuple前面加一个*号，把list或tuple的元素变成可变参数传进去：
 print(cal1(*nums))
 
 
@@ -74,14 +84,24 @@ person('Bob2', 36, city='Beijing', gender = 'M')
 person('Bob3', 37, **extra)
 
 # 限制关键字参数的名字，就可以用命名关键字参数
+# 和关键字参数**kw不同，命名关键字参数需要一个特殊分隔符*，*后面的参数被视为命名关键字参数。
 def person(name, age, *, city, job):
     print(name, age, city, job)
 
 person('Jack', 24, city='Beijing', job='Engineer')
 
+'''
+# 参数可以组合,但参数定义的顺序必须是：必选参数、默认参数、可变参数、命名关键字参数和关键字参数。
+# *args是可变参数，args接收的是一个tuple；
+# **kw是关键字参数，kw接收的是一个dict。
+# 可变参数既可以直接传入：func(1, 2, 3)，又可以先组装list或tuple，再通过*args传入：func(*(1, 2, 3))；
+# 关键字参数既可以直接传入：func(a=1, b=2)，又可以先组装dict，再通过**kw传入：func(**{'a': 1, 'b': 2})。
+'''
+def f1(a, b, c=0, *args, **kw):
+    print('a =', a, 'b =', b, 'c =', c, 'args =', args, 'kw =', kw)
 
-#参数可以组合,但参数定义的顺序必须是：必选参数、默认参数、可变参数、命名关键字参数和关键字参数。
-
+def f2(a, b, c=0, *, d, **kw):
+    print('a =', a, 'b =', b, 'c =', c, 'd =', d, 'kw =', kw)
 
 
 #递归函数
@@ -91,7 +111,8 @@ def fact(n):
     return n * fact(n-1)
 
 print(fact(5))
-
+#尾递归是指，在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。
+# 这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。
 #尾递归,避免出现栈溢出的情况,但Python标准的解释器没有针对尾递归做优化
 def fact_iter(num, product):
     if num == 1:

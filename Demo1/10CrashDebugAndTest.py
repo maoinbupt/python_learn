@@ -54,11 +54,11 @@ class Dict(dict):
         super().__init__(**kw)
 
     # 注释掉这个方法,文档测试就会报错
-    # def __getattr__(self, key):
-    #     try:
-    #         return self[key]
-    #     except KeyError:
-    #         raise AttributeError(r"'Dict' object has no attribute '%s'" % key)
+    def __getattr__(self, key):
+        try:
+            return self[key]
+        except KeyError:
+            raise AttributeError(r"'Dict' object has no attribute '%s'" % key)
 
     def __setattr__(self, key, value):
         self[key] = value
@@ -73,6 +73,7 @@ class TestDict(unittest.TestCase):
         self.assertEqual(d.a, 1)
         self.assertEqual(d.b, 'test')
         self.assertTrue(isinstance(d, dict))
+        print('test_init')
 
     def test_key(self):
         d = Dict()
@@ -104,7 +105,7 @@ class TestDict(unittest.TestCase):
         print('tearDown...')
 
     # 运行单元测试
-    # 方法2: python -m unittest 10CrashDebugAndTest
+    # 方法2: python3 -m unittest 10CrashDebugAndTest
     if __name__ == '__main__':
         unittest.main()
 

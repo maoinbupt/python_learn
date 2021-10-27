@@ -6,8 +6,8 @@ natuals = itertools.count(1)
 #     print(c)
 
 cs = itertools.cycle('ABC') # 注意字符串也是序列的一种
-# for c in cs:
-#     print(c)
+    # for c in cs:
+    #     print(c)
 
 nsr = itertools.repeat('A', 3)
 for n in nsr:

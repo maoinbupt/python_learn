@@ -3,7 +3,7 @@ import os, time, random
 
 
 # 读数据进程
-def read(q):
+def read(q: Queue):
     print('Process to read: %s' % os.getpid())
     while True:
         value = q.get(True)
